@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1023821216192",
+    "project_id": "lyodesa",
+    "storage_bucket": "lyodesa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023821216192:android:3fa1d4e5f8a622a00ef025",
+        "android_client_info": {
+          "package_name": "com.ladonskliarov.lyodesa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1023821216192-i2fne046m43aj9s9cth3c2ugmnu0ji7c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW5hi9AYBCL7JBj4BgQ71hXvBIoPqJIp8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1023821216192-i2fne046m43aj9s9cth3c2ugmnu0ji7c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
