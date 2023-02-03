@@ -5,17 +5,6 @@ import 'package:ly_odesa/presentation/details_screen/components/amount_widget.da
 import 'package:ly_odesa/presentation/drawer_screen/drawer_screen.dart';
 import 'package:ly_odesa/presentation/home_screen/components/appbar.dart';
 
-// class DetailsScree extends StatelessWidget {
-//   const DetailsScree({required this.product, Key? key}) : super(key: key);
-//
-//   final Product product;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     //return DrawerScree(child: Details(product: product));
-//   }
-// }
-
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({required this.product, Key? key}) : super(key: key);
   final Product product;

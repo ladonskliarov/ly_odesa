@@ -1,4 +1,4 @@
-
+import 'package:ly_odesa/data/models/json_converter.dart';
 import 'package:ly_odesa/data/models/product.dart';
 
 class SpeedOrder {
@@ -13,7 +13,7 @@ class SpeedOrder {
   factory SpeedOrder.fromJson(Map<String, dynamic> json){
     return SpeedOrder(
         id: json['id'] as int,
-        product: Product.fromJson(json['product'] as Map<String, dynamic>),
+        product: JSONConverter().fromJson(json['product'] as Map<String, dynamic>),
         fullName: json['name'] as String,
         phoneNumber: json['number'] as String,
         day: json['day'] as String,
@@ -23,7 +23,7 @@ class SpeedOrder {
 
   Map<String, dynamic> toJson() => {
     'id': id,
-    'product': product.toJson(),
+    'product': JSONConverter().toJson(product),
     'name': fullName,
     'number': phoneNumber,
     'day': day,

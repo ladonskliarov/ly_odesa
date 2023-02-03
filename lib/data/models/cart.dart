@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:ly_odesa/data/models/json_converter.dart';
 import 'package:ly_odesa/data/models/product.dart';
 
 part 'cart.g.dart';
