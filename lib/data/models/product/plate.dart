@@ -7,7 +7,7 @@ class Plate extends Product {
     required super.id, required super.price, required super.amount,
     required super.name, required super.material, required super.description,
     required super.size, required super.color, required super.images,
-    required this.capacity
+    required super.type, required this.capacity
   });
 
   factory Plate.fromJson(Map<String, dynamic> json) => Plate(
@@ -19,6 +19,7 @@ class Plate extends Product {
     description: json['description'] as String,
     size: json['size'] as String,
     color: json['color'] as String,
+    type: json['type'] as String,
     images:
     (json['images'] as List<dynamic>).map((e) => e as String).toList(),
     capacity: json['capacity'] as String,
@@ -35,6 +36,7 @@ class Plate extends Product {
     'color': color,
     'images': images,
     'amount': amount,
+    'type': type,
     'capacity': capacity
   };
 }

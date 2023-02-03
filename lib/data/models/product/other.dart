@@ -4,7 +4,8 @@ class Other extends Product {
   Other({
     required super.id, required super.price, required super.amount,
     required super.name, required super.material, required super.description,
-    required super.size, required super.color, required super.images
+    required super.size, required super.color, required super.images,
+    required super.type
   });
 
   factory Other.fromJson(Map<String, dynamic> json) => Other(
@@ -16,6 +17,7 @@ class Other extends Product {
     description: json['description'] as String,
     size: json['size'] as String,
     color: json['color'] as String,
+    type: json['type'] as String,
     images:
     (json['images'] as List<dynamic>).map((e) => e as String).toList(),
   );
@@ -31,5 +33,6 @@ class Other extends Product {
     'color': color,
     'images': images,
     'amount': amount,
+    'type': type
   };
 }
