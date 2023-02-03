@@ -19,7 +19,9 @@ class CartProvider extends ChangeNotifier {
         description: product.description,
         size: product.size,
         color: product.color,
-        images: product.images));
+        images: product.images,
+        type: product.type
+    ));
     _cart.cartPrice += _amountBuy * product.price;
     notifyListeners();
   }
