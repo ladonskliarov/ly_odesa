@@ -1,13 +1,12 @@
 import 'package:ly_odesa/data/models/product.dart';
 
 class Plate extends Product {
-  final String capacity;
 
   Plate({
     required super.id, required super.price, required super.amount,
     required super.name, required super.material, required super.description,
     required super.size, required super.color, required super.images,
-    required super.type, required this.capacity
+    required super.type
   });
 
   factory Plate.fromJson(Map<String, dynamic> json) => Plate(
@@ -22,7 +21,6 @@ class Plate extends Product {
     type: json['type'] as String,
     images:
     (json['images'] as List<dynamic>).map((e) => e as String).toList(),
-    capacity: json['capacity'] as String,
   );
 
   @override
@@ -37,6 +35,5 @@ class Plate extends Product {
     'images': images,
     'amount': amount,
     'type': type,
-    'capacity': capacity
   };
 }
