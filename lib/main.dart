@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:ly_odesa/domain/providers/cart_provider/cart_provider.dart';
 import 'package:ly_odesa/domain/providers/drawer_provider/drawer_provider.dart';
 import 'package:ly_odesa/domain/providers/user_data_provider/user_data_provider.dart';
+import 'package:ly_odesa/presentation/custom_widgets/web_phone_optimizer.dart';
 import 'package:ly_odesa/presentation/home_screen/home_screen.dart';
 import 'package:ly_odesa/privacy_settings.dart';
 import 'package:material_color_generator/material_color_generator.dart';
