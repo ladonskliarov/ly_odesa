@@ -1,5 +1,6 @@
 assets/
 lib/privacy_settings.dart
+.firebase
 
 # Miscellaneous
 *.class
