@@ -30,7 +30,7 @@ class LoginStateError extends AuthState {
   List<Object?> get props => [];
 }
 
-class SignoutState extends AuthState {
-  @override
-  List<Object> get props => [];
-}
+// class SignoutState extends AuthState {
+//   @override
+//   List<Object> get props => [];
+// }

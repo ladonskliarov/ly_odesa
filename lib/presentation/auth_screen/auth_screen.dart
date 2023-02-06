@@ -41,7 +41,7 @@ class AuthScreen extends StatelessWidget {
                                               phoneNumber: state.user.phoneNumber
                                           )
                                       );
-                                    } else if (state is SignoutState){
+                                    } else if (state is SignOutState){
                                       return const LoginScreen();
                                     } else if (state is LoginStateError) {
                                       return Scaffold(

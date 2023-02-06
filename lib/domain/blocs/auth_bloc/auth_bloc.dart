@@ -17,12 +17,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository _authRepository;
 
   AuthBloc(this._authRepository) : super(LoginLoadingState()) {
+
+
     on<CheckOnDataEvent>((event, emit) async {
       emit(LoginLoadingState());
       final userInAuth = FirebaseAuth.instance.currentUser?.uid;
       try {
         if (userInAuth == null) {
-          emit(SignoutState());
+          emit(SignOutState());
         } else {
           final docUserInFirestore = await FirebaseFirestore.instance.collection('users').doc(userInAuth).get();
           final userJsonData = docUserInFirestore.data();
@@ -87,7 +89,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignoutEvent>((event, emit) {
       _authRepository.signOut();
       event.context.read<UserDataProvider>().signOutUser();
-      emit(SignoutState());
+      emit(SignOutState());
     });
   }
 }
