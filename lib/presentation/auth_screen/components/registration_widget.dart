@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ly_odesa/domain/blocs/auth_bloc/auth_bloc.dart';
 import 'package:ly_odesa/domain/providers/user_data_provider/user_data_provider.dart';
 import 'package:ly_odesa/presentation/custom_widgets/text_field_widget.dart';
+import 'package:ly_odesa/presentation/home_screen/home_screen.dart';
 
 class RegistrationWidget extends StatefulWidget {
   const RegistrationWidget({Key? key}) : super(key: key);
@@ -30,7 +31,9 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   GestureDetector(
-                    onTap: () {Navigator.pop(context);},
+                    onTap: () {
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen()), (route) => false);
+                      },
                     child: SizedBox(
                         width: 120,
                         height: 120,
