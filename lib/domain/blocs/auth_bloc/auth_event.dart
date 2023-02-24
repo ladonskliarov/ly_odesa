@@ -9,6 +9,20 @@ class CheckOnDataEvent extends AuthEvent {
   List<Object> get props => [];
 }
 
+class ChooseLoginEvent extends AuthEvent {
+  const ChooseLoginEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class ChooseRegisterEvent extends AuthEvent {
+  const ChooseRegisterEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
 class LoginEvent extends AuthEvent {
   const LoginEvent({required this.email, required this.password});
   final String email, password;
@@ -35,18 +49,4 @@ class SignoutEvent extends AuthEvent {
   const SignoutEvent({required this.context});
   @override
   List<Object> get props => [context];
-}
-
-class DataToProviderEvent extends AuthEvent{
-  final BuildContext context;
-  const DataToProviderEvent({required this.context});
-  @override
-  List<Object> get props => [];
-}
-
-class AdminSendData extends AuthEvent {
-  const AdminSendData({required this.product});
-  final Product product;
-  @override
-  List<Object> get props => [];
 }

@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ly_odesa/domain/blocs/auth_bloc/auth_bloc.dart';
-import 'package:ly_odesa/domain/providers/user_data_provider/user_data_provider.dart';
 import 'package:ly_odesa/presentation/custom_widgets/text_field_widget.dart';
 import 'package:ly_odesa/presentation/home_screen/home_screen.dart';
 
-class RegistrationWidget extends StatefulWidget {
-  const RegistrationWidget({Key? key}) : super(key: key);
+class RegisterWidget extends StatefulWidget {
+  const RegisterWidget({Key? key}) : super(key: key);
 
   @override
-  State<RegistrationWidget> createState() => _RegistrationWidgetState();
+  State<RegisterWidget> createState() => _RegisterWidgetState();
 }
 
-class _RegistrationWidgetState extends State<RegistrationWidget> {
+class _RegisterWidgetState extends State<RegisterWidget> {
   TextEditingController fullNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -35,18 +34,19 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen()), (route) => false);
                       },
                     child: SizedBox(
-                        width: 120,
-                        height: 120,
-                        child: Image.asset('assets/images/brand/ly_dark.png', fit: BoxFit.fill,)
+                      width: 120,
+                      height: 120,
+                      child: Image.asset('assets/images/brand/ly_dark.png', fit: BoxFit.fill,)
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 20.0),
                     child: GestureDetector(
-                        onTap: () {
-                          context.read<UserDataProvider>().changeLoginState();
-                        },
-                        child: const Text('Вхід', style: TextStyle(fontSize: 25, color: Colors.grey),)),
+                      onTap: () {
+                        BlocProvider.of<AuthBloc>(context).add(const ChooseLoginEvent());
+                      },
+                      child: const Text('Вхід', style: TextStyle(fontSize: 25, color: Colors.grey),)
+                    ),
                   )
                 ],
               ),
@@ -75,6 +75,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                             icon: const Icon(Icons.phone_iphone, color: Colors.white, size: 20,),
                             hintText: 'Телефон'),
                         TextFieldCustom(
+                          obscureText: true,
                             controller: passwordController,
                             icon: const Icon(Icons.lock_outline_rounded, color: Colors.white, size: 20,), hintText: 'Пароль'),
                         TextFieldCustom(

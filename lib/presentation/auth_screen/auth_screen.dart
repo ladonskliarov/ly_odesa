@@ -4,6 +4,7 @@ import 'package:ly_odesa/data/models/my_user.dart';
 import 'package:ly_odesa/data/services/firebase_auth_service/firebase_auth_service.dart';
 import 'package:ly_odesa/domain/blocs/auth_bloc/auth_bloc.dart';
 import 'package:ly_odesa/presentation/auth_screen/components/login_widget.dart';
+import 'package:ly_odesa/presentation/auth_screen/components/register_widget.dart';
 import 'package:ly_odesa/presentation/custom_widgets/web_phone_optimizer.dart';
 import 'package:ly_odesa/presentation/user_screen/user_screen.dart';
 
@@ -41,8 +42,10 @@ class AuthScreen extends StatelessWidget {
                                               phoneNumber: state.user.phoneNumber
                                           )
                                       );
-                                    } else if (state is SignoutState){
-                                      return const LoginScreen();
+                                    } else if (state is LoginState){
+                                      return const LoginWidget();
+                                     } else if (state is RegisterState){
+                                      return const RegisterWidget();
                                     } else if (state is LoginStateError) {
                                       return Scaffold(
                                         backgroundColor: const Color(0xff1b1a1a),
@@ -58,7 +61,7 @@ class AuthScreen extends StatelessWidget {
                                           child: Text('Упс.. Сталася помилкa\n${state.error}'),
                                         ),
                                       );
-                                    } else if (state is LoginLoadingState){
+                                    } else if (state is AuthLoadingState){
                                         return const Center(
                                             child: CircularProgressIndicator(
                                               color: Colors.white,
