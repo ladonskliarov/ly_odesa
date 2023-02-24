@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ly_odesa/data/models/my_user.dart';
-import 'package:ly_odesa/data/models/product.dart';
 import 'package:ly_odesa/data/repositories/auth_repository/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,15 +15,18 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository _authRepository;
 
-  AuthBloc(this._authRepository) : super(LoginLoadingState()) {
+  AuthBloc(this._authRepository) : super(AuthLoadingState()) {
 
+    on<ChooseLoginEvent>((event, emit) => emit(LoginState()));
+
+    on<ChooseRegisterEvent>((event, emit) => emit(RegisterState()));
 
     on<CheckOnDataEvent>((event, emit) async {
-      emit(LoginLoadingState());
+      emit(AuthLoadingState());
       final userInAuth = FirebaseAuth.instance.currentUser?.uid;
       try {
         if (userInAuth == null) {
-          emit(SignOutState());
+          emit(LoginState());
         } else {
           final docUserInFirestore = await FirebaseFirestore.instance.collection('users').doc(userInAuth).get();
           final userJsonData = docUserInFirestore.data();
@@ -40,7 +42,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<LoginEvent>((event, emit) async {
-      emit(LoginLoadingState());
+      emit(AuthLoadingState());
       try {
         await _authRepository.signIn(
             email: event.email, password: event.password);
@@ -53,7 +55,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             emit(LoginLoadedState(user: userData));
           });
         } else {
-          emit(SignOutState());
+          emit(LoginState());
         }
       } catch (e) {
         emit(LoginStateError(e as Error));
@@ -62,7 +64,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<RegisterEvent>((event, emit) async {
       try {
-        emit(LoginLoadingState());
+        emit(AuthLoadingState());
         await _authRepository
             .createUser(
           email: event.email,
@@ -82,14 +84,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     });
 
-    on<DataToProviderEvent>((event, emit) {
-      event.context.read<UserDataProvider>().fetchUser();
-    });
-
     on<SignoutEvent>((event, emit) {
       _authRepository.signOut();
       event.context.read<UserDataProvider>().signOutUser();
-      emit(SignOutState());
+      emit(LoginState());
     });
   }
 }

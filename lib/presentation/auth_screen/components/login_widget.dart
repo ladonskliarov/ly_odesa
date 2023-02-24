@@ -4,9 +4,7 @@ import 'package:ly_odesa/data/services/firebase_auth_service/firebase_auth_servi
 import 'package:ly_odesa/domain/blocs/auth_bloc/auth_bloc.dart';
 import 'package:ly_odesa/domain/providers/user_data_provider/user_data_provider.dart';
 import 'package:ly_odesa/presentation/custom_widgets/text_field_widget.dart';
-import 'package:ly_odesa/presentation/auth_screen/components/registration_widget.dart';
 import 'package:ly_odesa/presentation/home_screen/home_screen.dart';
-import 'package:provider/provider.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key? key}) : super(key: key);
@@ -45,7 +43,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         padding: const EdgeInsets.only(right: 20.0),
                         child: GestureDetector(
                             onTap: () {
-                              context.read<UserDataProvider>().changeLoginState();
+                              BlocProvider.of<AuthBloc>(context).add(const ChooseRegisterEvent());
                             },
                             child: const Text('Реєстрація', style: TextStyle(
                                 fontSize: 25, color: Colors.grey),))
@@ -110,22 +108,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               ),
             ],
           ),
-        ),
+      ),
     );
-  }
-}
-
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context){
-    return ChangeNotifierProvider(
-        create: (_) => UserDataProvider(),
-        builder: (context, child) {
-          return SizedBox(
-                  height: MediaQuery.of(context).size.height - 10,
-                  child: context.watch<UserDataProvider>().isLogin != false ? const LoginWidget() : const RegistrationWidget());
-        });
   }
 }

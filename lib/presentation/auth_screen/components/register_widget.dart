@@ -5,14 +5,14 @@ import 'package:ly_odesa/domain/providers/user_data_provider/user_data_provider.
 import 'package:ly_odesa/presentation/custom_widgets/text_field_widget.dart';
 import 'package:ly_odesa/presentation/home_screen/home_screen.dart';
 
-class RegistrationWidget extends StatefulWidget {
-  const RegistrationWidget({Key? key}) : super(key: key);
+class RegisterWidget extends StatefulWidget {
+  const RegisterWidget({Key? key}) : super(key: key);
 
   @override
-  State<RegistrationWidget> createState() => _RegistrationWidgetState();
+  State<RegisterWidget> createState() => _RegisterWidgetState();
 }
 
-class _RegistrationWidgetState extends State<RegistrationWidget> {
+class _RegisterWidgetState extends State<RegisterWidget> {
   TextEditingController fullNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -44,7 +44,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                     padding: const EdgeInsets.only(right: 20.0),
                     child: GestureDetector(
                         onTap: () {
-                          context.read<UserDataProvider>().changeLoginState();
+                          BlocProvider.of<AuthBloc>(context).add(const ChooseLoginEvent());
                         },
                         child: const Text('Вхід', style: TextStyle(fontSize: 25, color: Colors.grey),)),
                   )

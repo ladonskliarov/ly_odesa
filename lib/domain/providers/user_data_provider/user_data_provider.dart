@@ -28,13 +28,4 @@ class UserDataProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
-
-  bool _isLogin = true;
-  bool get isLogin => _isLogin;
-
-  void changeLoginState(){
-    _isLogin = !_isLogin;
-    fetchUser();
-    notifyListeners();
-  }
 }
