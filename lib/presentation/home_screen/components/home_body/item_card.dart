@@ -25,7 +25,22 @@ class ItemCard extends StatelessWidget {
                   width: double.infinity,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.network(product.images[0], fit: BoxFit.fill,),
+                    child: Stack(
+                      fit: StackFit.expand,
+                        children: [
+                          Image.network(product.images[0], fit: BoxFit.fill,),
+                          product.amount == 0
+                              ? Align(
+                                alignment: Alignment.center,
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(color: Colors.white.withOpacity(0.3)),
+                                    child: const SizedBox(
+                                        child: Text('Немає в наявності', style: TextStyle(color: Colors.white, fontSize: 16),)
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox(),
+                        ]),
                   ),
                 ),
               ),
