@@ -11,53 +11,70 @@ class ProductSliderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-                itemCount: productList.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 2),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
-                      child: Material(
-                        color: Colors.transparent,
-                        textStyle: const TextStyle(color: Colors.white, fontFamily: 'e-Ukraine'),
-                        child: InkWell(
-                          splashColor: Colors.white.withOpacity(0.3),
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsScreen(product: productList[index],)));
-                          },
-                          child: SizedBox(
-                            height: 150, width: 150,
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  flex: 6,
-                                  child:
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(30),
-                                    child: SizedBox(
-                                      width: 140,
-                                      height: 140,
-                                      child: Image.network(productList[index].images[0], fit: BoxFit.cover,),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                    flex: 1,
-                                    child: Text(productList[index].name, overflow: TextOverflow.fade, softWrap: false,)
-                                ),
-                                Expanded(
-                                    flex: 1,
-                                    child: Text('${productList[index].price} гривень')
-                                ),
-                              ],
-                            ),
-                          ),
+      itemCount: productList.length,
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(30),
+            child: Material(
+              color: Colors.transparent,
+              textStyle: const TextStyle(color: Colors.white, fontFamily: 'e-Ukraine'),
+              child: InkWell(
+                splashColor: Colors.white.withOpacity(0.3),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsScreen(product: productList[index],)));
+                },
+                child: SizedBox(
+                  height: 150, width: 150,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 7,
+                        child:
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(30),
+                          child: Stack(
+                            fit: StackFit.expand,
+                              children:[
+                                Image.network(productList[index].images[0], fit: BoxFit.fill,),
+                                productList[index].amount == 0
+                                    ? Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: DecoratedBox(
+                                          decoration: BoxDecoration(color: Colors.white.withOpacity(0.3)),
+                                          child: const SizedBox(
+                                            child: Text(
+                                              'Немає в наявності',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(color: Colors.white, fontSize: 16),)
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                    : const SizedBox(),
+                              ]),
                         ),
                       ),
-                    )
+                      Expanded(
+                          flex: 1,
+                          child: Text(productList[index].name, overflow: TextOverflow.fade, softWrap: false,)
+                      ),
+                      Expanded(
+                          flex: 1,
+                          child: Text('${productList[index].price} гривень')
+                      ),
+                    ],
+                  ),
                 ),
-              );
-      }
+              ),
+            ),
+          )
+      ),
+    );
+  }
 }
 
 class ProductSliderBackground extends StatelessWidget {
