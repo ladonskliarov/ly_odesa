@@ -4,12 +4,17 @@ abstract class AuthState extends Equatable {
   const AuthState();
 }
 
-class LoginLoadingState extends AuthState {
+class AuthLoadingState extends AuthState {
   @override
   List<Object> get props => [];
 }
 
-class SignOutState extends AuthState {
+class LoginState extends AuthState {
+  @override
+  List<Object> get props => [];
+}
+
+class RegisterState extends AuthState {
   @override
   List<Object> get props => [];
 }
