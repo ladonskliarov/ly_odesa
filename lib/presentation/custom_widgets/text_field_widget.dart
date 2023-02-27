@@ -34,7 +34,7 @@ class _TextFieldCustomState extends State<TextFieldCustom> {
                     flex: 4,
                     child: Text('${widget.hintText}:', style: const TextStyle(color: Colors.grey),)),
                 Expanded(
-                  flex: 6,
+                  flex: 9,
                   child: Row(
                     children: [
                       (widget.icon != null ? Expanded(
@@ -44,32 +44,28 @@ class _TextFieldCustomState extends State<TextFieldCustom> {
                             child:  widget.icon),
                       ) : const SizedBox()),
                       Expanded(
-                          flex: 9,
-                          child: SizedBox(
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
-                                reverse: true,
-                                child: TextFormField(
-                                  key: widget.key,
-                                  validator: widget.validator,
-                                  obscureText: widget.obscureText ?? false,
-                                  controller: widget.controller,
-                                  toolbarOptions: const ToolbarOptions(
-                                      cut: true,
-                                      copy: true,
-                                      paste: true,
-                                    selectAll: true
-                                  ),
-                                  style: const TextStyle(color: Colors.grey),
-                                  cursorColor: Colors.white,
-                                  decoration: const InputDecoration(
-                                      border: InputBorder.none,
-                                      errorStyle: TextStyle(color: Colors.blue)
-                                  ),
-                                ),
-                              )
-                          )
-                      ),
+                        flex: 9,
+                        child: TextFormField(
+                          key: widget.key,
+                          validator: widget.validator,
+                          obscureText: widget.obscureText ?? false,
+                          controller: widget.controller,
+                          toolbarOptions: const ToolbarOptions(
+                              cut: true,
+                              copy: true,
+                              paste: true,
+                            selectAll: true
+                          ),
+                          style: const TextStyle(color: Colors.grey),
+                          cursorColor: Colors.white,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            isCollapsed: true,
+                            isDense: true,
+                            errorStyle: TextStyle(color: Colors.blue)
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 )

@@ -29,7 +29,7 @@ class _UserScreenState extends State<UserScreen> {
     return RepositoryProvider(
       create: (context) => FirebaseAuthService(),
       child: BlocProvider(
-        create: (context) => AuthBloc(RepositoryProvider.of<FirebaseAuthService>(context)),
+        create: (context) => AuthBloc(authRepository: RepositoryProvider.of<FirebaseAuthService>(context)),
         child: WebPhoneOptimizer(
           child: Material(
             textStyle: TextStyle(color: Colors.white, fontFamily: 'e-Ukraine', fontSize: MediaQuery.of(context).size.height * 0.021),

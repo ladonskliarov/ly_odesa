@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ly_odesa/domain/blocs/auth_bloc/auth_bloc.dart';
+import 'package:ly_odesa/domain/validator/validator.dart';
 import 'package:ly_odesa/presentation/custom_widgets/text_field_widget.dart';
 import 'package:ly_odesa/presentation/home_screen/home_screen.dart';
 
 class RegisterWidget extends StatefulWidget {
-  const RegisterWidget({Key? key}) : super(key: key);
+  const RegisterWidget({required this.validator, Key? key}) : super(key: key);
+  final Validator validator;
 
   @override
   State<RegisterWidget> createState() => _RegisterWidgetState();
@@ -70,60 +72,51 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                             const Text('Приєднуйся, зроби це!', style: TextStyle(fontSize: 20),),
                             TextFieldCustom(
                                 validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Здається тут немає тексту';
-                                  }
-                                  return null;
+                                  return widget.validator.validateFullNameField(value);
                                 },
                                 controller: fullNameController,
-                                icon: const Icon(Icons.account_circle_rounded, color: Colors.white, size: 20), hintText: "Ім'я Прізвище"),
+                                icon: const Icon(Icons.account_circle_rounded, color: Colors.white, size: 20),
+                                hintText: "Ім'я Прізвище"
+                            ),
                             TextFieldCustom(
                                 validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Здається тут немає тексту';
-                                  }
-                                  return null;
+                                  return widget.validator.validateEmailFiled(value);
                                 },
                                 controller: emailController,
-                                icon: const Icon(Icons.mail, color: Colors.white, size: 20,), hintText: 'Пошта'),
+                                icon: const Icon(Icons.mail, color: Colors.white, size: 20,),
+                                hintText: 'Пошта'
+                            ),
                             TextFieldCustom(
                                 validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Здається тут немає тексту';
-                                  }
-                                  return null;
+                                  return widget.validator.validateNumberField(value);
                                 },
                                 controller: phoneNumberController,
                                 icon: const Icon(Icons.phone_iphone, color: Colors.white, size: 20,),
-                                hintText: 'Телефон'),
+                                hintText: 'Телефон'
+                            ),
                             TextFieldCustom(
                                 validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Здається тут немає тексту';
-                                  }
-                                  return null;
+                                  return widget.validator.validatePasswordField(value);
                                 },
                               obscureText: true,
                                 controller: passwordController,
-                                icon: const Icon(Icons.lock_outline_rounded, color: Colors.white, size: 20,), hintText: 'Пароль'),
+                                icon: const Icon(Icons.lock_outline_rounded, color: Colors.white, size: 20,),
+                                hintText: 'Пароль'
+                            ),
                             TextFieldCustom(
                                 validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Здається тут немає тексту';
-                                  }
-                                  return null;
+                                  return widget.validator.validateCityField(value);
                                 },
                                 controller: cityController,
-                                hintText: 'Місто'),
+                                hintText: 'Місто'
+                            ),
                             TextFieldCustom(
                                 validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Здається тут немає тексту';
-                                  }
-                                  return null;
+                                  return widget.validator.validatePostField(value);
                                 },
                                 controller: numberOfNovaPoshtaController,
-                                hintText: 'Відділення'),
+                                hintText: 'Відділення'
+                            ),
                             Padding(
                               padding: const EdgeInsets.only(top: 10.0),
                               child: DecoratedBox(

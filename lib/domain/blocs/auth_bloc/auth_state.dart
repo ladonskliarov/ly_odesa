@@ -10,11 +10,19 @@ class AuthLoadingState extends AuthState {
 }
 
 class LoginState extends AuthState {
+  final Validator validator;
+
+  const LoginState({required this.validator});
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [validator];
 }
 
 class RegisterState extends AuthState {
+  final Validator validator;
+
+  const RegisterState({required this.validator});
+
   @override
   List<Object> get props => [];
 }
