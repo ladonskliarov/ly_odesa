@@ -7,8 +7,7 @@ import 'package:ly_odesa/presentation/custom_widgets/text_field_widget.dart';
 import 'package:ly_odesa/presentation/home_screen/home_screen.dart';
 
 class LoginWidget extends StatefulWidget {
-  const LoginWidget({required this.validator, Key? key}) : super(key: key);
-  final Validator validator;
+  const LoginWidget({Key? key}) : super(key: key);
 
   @override
   State<LoginWidget> createState() => _LoginWidgetState();
@@ -18,7 +17,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
+  final Validator _validator = ValidatorRealization();
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +70,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         style: TextStyle(fontSize: 20, color: Colors.white),),
                       TextFieldCustom(
                         validator: (value) {
-                          return widget.validator.validateEmailFiled(value);
+                          return _validator.validateEmailFiled(value);
                         },
                         controller: _emailController,
                           icon: const Icon(Icons.account_circle_rounded, color: Colors.white, size: 20),
@@ -79,7 +78,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                       ),
                       TextFieldCustom(
                           validator: (value) {
-                            return widget.validator.validatePasswordField(value);
+                            return _validator.validatePasswordField(value);
                           },
                         obscureText: true,
                         controller: _passwordController,

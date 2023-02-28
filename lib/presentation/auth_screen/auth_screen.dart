@@ -14,15 +14,10 @@ class AuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider(create: (context) => FirebaseAuthService(),),
-        RepositoryProvider(create: (context) => ValidatorRealization(),),
-        ],
+    return RepositoryProvider(create: (context) => FirebaseAuthService(),
         child: BlocProvider(
           create: (context) => AuthBloc(
               authRepository: RepositoryProvider.of<FirebaseAuthService>(context),
-              validator: RepositoryProvider.of<ValidatorRealization>(context)
           )..add(CheckOnDataEvent()),
           child: WebPhoneOptimizer(
             child: Scaffold(
@@ -47,9 +42,9 @@ class AuthScreen extends StatelessWidget {
                                               )
                                           );
                                         } else if (state is LoginState){
-                                          return LoginWidget(validator: state.validator);
+                                          return const LoginWidget();
                                          } else if (state is RegisterState){
-                                          return RegisterWidget(validator: state.validator);
+                                          return RegisterWidget();
                                         } else if (state is LoginStateError) {
                                           return Scaffold(
                                             backgroundColor: const Color(0xff1b1a1a),

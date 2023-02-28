@@ -6,8 +6,7 @@ import 'package:ly_odesa/presentation/custom_widgets/text_field_widget.dart';
 import 'package:ly_odesa/presentation/home_screen/home_screen.dart';
 
 class RegisterWidget extends StatefulWidget {
-  const RegisterWidget({required this.validator, Key? key}) : super(key: key);
-  final Validator validator;
+  const RegisterWidget({Key? key}) : super(key: key);
 
   @override
   State<RegisterWidget> createState() => _RegisterWidgetState();
@@ -21,6 +20,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController numberOfNovaPoshtaController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final Validator _validator = ValidatorRealization();
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                             const Text('Приєднуйся, зроби це!', style: TextStyle(fontSize: 20),),
                             TextFieldCustom(
                                 validator: (value) {
-                                  return widget.validator.validateFullNameField(value);
+                                  return _validator.validateFullNameField(value);
                                 },
                                 controller: fullNameController,
                                 icon: const Icon(Icons.account_circle_rounded, color: Colors.white, size: 20),
@@ -80,7 +80,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                             ),
                             TextFieldCustom(
                                 validator: (value) {
-                                  return widget.validator.validateEmailFiled(value);
+                                  return _validator.validateEmailFiled(value);
                                 },
                                 controller: emailController,
                                 icon: const Icon(Icons.mail, color: Colors.white, size: 20,),
@@ -88,7 +88,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                             ),
                             TextFieldCustom(
                                 validator: (value) {
-                                  return widget.validator.validateNumberField(value);
+                                  return _validator.validatePhoneNumberField(value);
                                 },
                                 controller: phoneNumberController,
                                 icon: const Icon(Icons.phone_iphone, color: Colors.white, size: 20,),
@@ -96,7 +96,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                             ),
                             TextFieldCustom(
                                 validator: (value) {
-                                  return widget.validator.validatePasswordField(value);
+                                  return _validator.validatePasswordField(value);
                                 },
                               obscureText: true,
                                 controller: passwordController,
@@ -105,14 +105,14 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                             ),
                             TextFieldCustom(
                                 validator: (value) {
-                                  return widget.validator.validateCityField(value);
+                                  return _validator.validateCityField(value);
                                 },
                                 controller: cityController,
                                 hintText: 'Місто'
                             ),
                             TextFieldCustom(
                                 validator: (value) {
-                                  return widget.validator.validatePostField(value);
+                                  return _validator.validatePostField(value);
                                 },
                                 controller: numberOfNovaPoshtaController,
                                 hintText: 'Відділення'
