@@ -15,20 +15,19 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository;
-  final Validator? validator;
 
-  AuthBloc({required this.authRepository, this.validator}) : super(AuthLoadingState()) {
+  AuthBloc({required this.authRepository}) : super(AuthLoadingState()) {
 
-    on<ChooseLoginEvent>((event, emit) => emit(LoginState(validator: validator!)));
+    on<ChooseLoginEvent>((event, emit) => emit(const LoginState()));
 
-    on<ChooseRegisterEvent>((event, emit) => emit(RegisterState(validator: validator!)));
+    on<ChooseRegisterEvent>((event, emit) => emit(RegisterState()));
 
     on<CheckOnDataEvent>((event, emit) async {
       emit(AuthLoadingState());
       final userInAuth = FirebaseAuth.instance.currentUser?.uid;
       try {
         if (userInAuth == null) {
-          emit(LoginState(validator: validator!));
+          emit(LoginState());
         } else {
           final docUserInFirestore = await FirebaseFirestore.instance.collection('users').doc(userInAuth).get();
           final userJsonData = docUserInFirestore.data();
@@ -57,7 +56,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             emit(LoginLoadedState(user: userData));
           });
         } else {
-          emit(LoginState(validator: validator!));
+          emit(LoginState());
         }
       } catch (e) {
         emit(LoginStateError(e as Error));
@@ -89,7 +88,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignoutEvent>((event, emit) {
       authRepository.signOut();
       event.context.read<UserDataProvider>().signOutUser();
-      emit(LoginState(validator: validator!));
+      emit(LoginState());
     });
   }
 }

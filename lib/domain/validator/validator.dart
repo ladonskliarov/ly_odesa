@@ -2,7 +2,7 @@ abstract class Validator {
   String? validateEmailFiled(String? value);
   String? validatePasswordField(String? value);
   String? validateFullNameField(String? value);
-  String? validateNumberField(String? value);
+  String? validatePhoneNumberField(String? value);
   String? validateCityField(String? value);
   String? validatePostField(String? value);
 }
@@ -40,7 +40,7 @@ class ValidatorRealization implements Validator {
   }
 
   @override
-  String? validateNumberField(String? value) {
+  String? validatePhoneNumberField(String? value) {
     if(value != null && value.isEmpty){
       return 'Заповніть це поле';
     } else if (checkNumberOnPrefix(value!)) {
