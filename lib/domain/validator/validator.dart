@@ -95,11 +95,9 @@ class ValidatorRealization implements Validator {
   }
 
   bool checkEmailName(String value){
-    final _value = value.split('');
+    final _value = value.split('@gmail.com');
     _value.remove('');
-    if(_value.length < 2){
-      return true;
-    } else if (_value.first.length < 5) {
+    if(_value.isEmpty || _value.length > 1){
       return true;
     }
     
