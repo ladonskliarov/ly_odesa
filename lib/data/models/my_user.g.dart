@@ -11,7 +11,7 @@ MyUser _$MyUserFromJson(Map<String, dynamic> json) => MyUser(
       city: json['city'] as String,
       email: json['email'] as String,
       password: json['password'] as String,
-      numberOfNovaPoshta: json['numberOfNovaPoshta'] as int,
+      numberOfNovaPoshta: json['numberOfNovaPoshta'] as String,
       bonusCard: BonusCard.fromJson(json['bonusCard'] as Map<String, dynamic>),
       phoneNumber: json['phoneNumber'] as String,
     );

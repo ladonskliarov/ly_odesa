@@ -92,7 +92,7 @@ class _SignoutOrderWidgetState extends State<SignoutOrderWidget> {
                           email: emailController.text,
                           phoneNumber: phoneNumberController.text,
                           city: cityController.text,
-                          numberOfNovaPoshta: int.parse(numberOfNovaPoshtaController.text),
+                          numberOfNovaPoshta: numberOfNovaPoshtaController.text,
                           cart: context.read<CartProvider>().cart
                       )
                   );

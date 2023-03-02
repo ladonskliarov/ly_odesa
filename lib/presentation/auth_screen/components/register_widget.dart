@@ -131,7 +131,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                               password: passwordController.text,
                                               phoneNumber: phoneNumberController.text,
                                               city: cityController.text,
-                                              numberOfNovaPoshta: int.parse(numberOfNovaPoshtaController.text),
+                                              numberOfNovaPoshta: numberOfNovaPoshtaController.text,
                                             )
                                         );
                                       } else {

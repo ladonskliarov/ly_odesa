@@ -37,8 +37,7 @@ class RegisterEvent extends AuthEvent {
     required this.fullName, required this.phoneNumber,
     required this.city, required this.numberOfNovaPoshta,
   });
-  final String email, fullName, city, phoneNumber, password;
-  final int numberOfNovaPoshta;
+  final String email, fullName, city, phoneNumber, password, numberOfNovaPoshta;
 
   @override
   List<Object> get props => [email, fullName, phoneNumber, city, numberOfNovaPoshta, password];

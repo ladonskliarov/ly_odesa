@@ -5,8 +5,7 @@ part  'my_user.g.dart';
 
 @JsonSerializable()
 class MyUser {
-  final String fullName, city, email, phoneNumber, password;
-  final int numberOfNovaPoshta;
+  final String fullName, city, email, phoneNumber, password, numberOfNovaPoshta;
   final BonusCard bonusCard;
 
   MyUser({required this.fullName, required this.city,

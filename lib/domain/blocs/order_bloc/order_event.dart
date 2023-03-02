@@ -11,8 +11,7 @@ class CheckOnUserEvent extends OrderEvent {
 }
 
 class SendOrderEvent extends OrderEvent {
-  final int numberOfNovaPoshta;
-  final String fullName, phoneNumber, city, email;
+  final String fullName, phoneNumber, city, email, numberOfNovaPoshta;
   final Cart cart;
   const SendOrderEvent({required this.numberOfNovaPoshta, required this.fullName, required this.phoneNumber,
     required this.city, required this.email, required this.cart
