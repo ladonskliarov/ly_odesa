@@ -106,11 +106,11 @@ class ValidatorRealization implements Validator {
 
   checkNumberOnPrefix(String value){
     if(value.startsWith('+38')) {
-      if(value.length != 11){
+      if(value.length != 13){
         return true;
       }
     } else if (value.startsWith('38')) {
-        if(value.length != 10){
+        if(value.length != 12){
           return true;
       }
     } else {
