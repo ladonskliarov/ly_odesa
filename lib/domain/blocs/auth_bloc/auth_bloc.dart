@@ -17,7 +17,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository;
 
   AuthBloc({required this.authRepository}) : super(AuthLoadingState()) {
-
     on<ChooseLoginEvent>((event, emit) => emit(const LoginState()));
 
     on<ChooseRegisterEvent>((event, emit) => emit(RegisterState()));
@@ -25,12 +24,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<CheckOnDataEvent>((event, emit) async {
       emit(AuthLoadingState());
       final userInAuth = FirebaseAuth.instance.currentUser?.uid;
+      print(userInAuth);
       try {
         if (userInAuth == null) {
           emit(LoginState());
         } else {
-          final docUserInFirestore = await FirebaseFirestore.instance.collection('users').doc(userInAuth).get();
+          final docUserInFirestore = await FirebaseFirestore.instance
+              .collection('users')
+              .doc(userInAuth)
+              .get();
+          print(docUserInFirestore.data());
           final userJsonData = docUserInFirestore.data();
+          print(userJsonData);
           final userData = MyUser.fromJson(userJsonData!);
           await Future.delayed(const Duration(milliseconds: 200), () {})
               .whenComplete(() {
@@ -49,7 +54,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             email: event.email, password: event.password);
         final userInAuth = FirebaseAuth.instance.currentUser?.uid;
         if (userInAuth != null) {
-          final docUserInFirestore = await FirebaseFirestore.instance.collection('users').doc(userInAuth).get();
+          final docUserInFirestore = await FirebaseFirestore.instance
+              .collection('users')
+              .doc(userInAuth)
+              .get();
           final userData = MyUser.fromJson(docUserInFirestore.data()!);
           await Future.delayed(const Duration(milliseconds: 200), () {})
               .whenComplete(() {
@@ -66,8 +74,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<RegisterEvent>((event, emit) async {
       try {
         emit(AuthLoadingState());
-        await authRepository
-            .createUser(
+        await authRepository.createUser(
           email: event.email,
           password: event.password,
           fullName: event.fullName,
@@ -75,10 +82,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           city: event.city,
           numberOfNovaPoshta: event.numberOfNovaPoshta,
         );
-          authRepository.signIn(email: event.email, password: event.password);
-          final currentUserId = FirebaseAuth.instance.currentUser?.uid;
-          final collectionUser = await FirebaseFirestore.instance.collection('users').doc(currentUserId).get();
-          final userData = MyUser.fromJson(collectionUser.data()!);
+        authRepository.signIn(email: event.email, password: event.password);
+        final currentUserId = FirebaseAuth.instance.currentUser?.uid;
+        final collectionUser = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(currentUserId)
+            .get();
+        final userData = MyUser.fromJson(collectionUser.data()!);
         emit(LoginLoadedState(user: userData));
       } catch (e) {
         emit(LoginStateError(e as Error));
