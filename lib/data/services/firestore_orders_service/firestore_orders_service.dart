@@ -11,7 +11,7 @@ class OrderSenderService implements OrderSenderRepository {
   sendOrder(
       {required Cart cart, required String fullName,
       required String phoneNumber, required String email,
-      required String city, required int numberOfNovaPoshta}) async {
+      required String city, required String numberOfNovaPoshta}) async {
     try {
       final ordersCollection = FirebaseFirestore.instance.collection('orders');
       final sortedCollection = await ordersCollection.orderBy('id', descending: true).get();

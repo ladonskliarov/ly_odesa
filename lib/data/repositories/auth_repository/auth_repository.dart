@@ -5,7 +5,7 @@ abstract class AuthRepository {
     required String fullName,
     required String city,
     required String phoneNumber,
-    required int numberOfNovaPoshta,
+    required String numberOfNovaPoshta,
   });
   Future signIn({
     required String email,

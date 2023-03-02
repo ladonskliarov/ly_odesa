@@ -1,12 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:ly_odesa/data/models/bonus_card.dart';
 
-part  'my_user.g.dart';
-
-@JsonSerializable()
 class MyUser {
-  final String fullName, city, email, phoneNumber, password;
-  final int numberOfNovaPoshta;
+  final String fullName, city, email, phoneNumber, password, numberOfNovaPoshta;
   final BonusCard bonusCard;
 
   MyUser({required this.fullName, required this.city,
@@ -15,6 +10,23 @@ class MyUser {
     required this.phoneNumber
   });
 
-  static MyUser fromJson(Map<String, dynamic> json) => _$MyUserFromJson(json);
-  Map<String, dynamic> toJson() => _$MyUserToJson(this);
+  static MyUser fromJson(Map<String, dynamic> json) => MyUser(
+    fullName: json['fullName'] as String,
+    city: json['city'] as String,
+    email: json['email'] as String,
+    password: json['password'] as String,
+    numberOfNovaPoshta: json['numberOfNovaPoshta'] as String,
+    bonusCard: BonusCard.fromJson(json['bonusCard'] as Map<String, dynamic>),
+    phoneNumber: json['phoneNumber'] as String,
+  );
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'fullName': fullName,
+    'city': city,
+    'email': email,
+    'phoneNumber': phoneNumber,
+    'password': password,
+    'numberOfNovaPoshta': numberOfNovaPoshta,
+    'bonusCard': bonusCard.toJson(),
+  };
 }

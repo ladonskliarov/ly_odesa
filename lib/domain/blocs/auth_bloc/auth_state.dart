@@ -10,11 +10,16 @@ class AuthLoadingState extends AuthState {
 }
 
 class LoginState extends AuthState {
+
+  const LoginState();
+
   @override
   List<Object> get props => [];
 }
 
 class RegisterState extends AuthState {
+  const RegisterState();
+
   @override
   List<Object> get props => [];
 }

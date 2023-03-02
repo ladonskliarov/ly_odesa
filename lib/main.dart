@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ly_odesa/domain/providers/cart_provider/cart_provider.dart';
 import 'package:ly_odesa/domain/providers/drawer_provider/drawer_provider.dart';
+import 'package:ly_odesa/domain/providers/search_provider/search_provider.dart';
 import 'package:ly_odesa/domain/providers/user_data_provider/user_data_provider.dart';
 import 'package:ly_odesa/presentation/custom_widgets/web_phone_optimizer.dart';
 import 'package:ly_odesa/presentation/home_screen/home_screen.dart';
@@ -15,7 +16,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp(
         options: const FirebaseOptions(
-        apiKey: apiKey,
+        apiKey: firebaseAPIKey,
         appId: appId,
         messagingSenderId: messagingSenderId,
         projectId: projectId,
@@ -42,6 +43,8 @@ class MyApp extends StatelessWidget {
             ),
             ChangeNotifierProvider(
                 create: (_) => UserDataProvider()),
+            ChangeNotifierProvider(
+              create: (_) => SearchProvider()),
           ],
           child: MaterialApp(
               title: 'LY.Odesa',

@@ -29,10 +29,10 @@ class _UserScreenState extends State<UserScreen> {
     return RepositoryProvider(
       create: (context) => FirebaseAuthService(),
       child: BlocProvider(
-        create: (context) => AuthBloc(RepositoryProvider.of<FirebaseAuthService>(context)),
+        create: (context) => AuthBloc(authRepository: RepositoryProvider.of<FirebaseAuthService>(context)),
         child: WebPhoneOptimizer(
           child: Material(
-            textStyle: const TextStyle(color: Colors.white, fontFamily: 'e-Ukraine'),
+            textStyle: TextStyle(color: Colors.white, fontFamily: 'e-Ukraine', fontSize: MediaQuery.of(context).size.height * 0.021),
             color: const Color(0xff1b1a1a),
             child: SafeArea(
               child: SizedBox(
@@ -63,43 +63,42 @@ class _UserScreenState extends State<UserScreen> {
                             children: [
                               Expanded(
                                 flex: 7,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 15.0, top: 15.0, bottom: 20.0),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                          flex: 1,
-                                          child: PrettyQr(
-                                                elementColor: Colors.white,
-                                                size: 350,
-                                                data: widget.user.bonusCard.numberOfBonusCard.toString(),
-                                                errorCorrectLevel: QrErrorCorrectLevel.M,
-                                                typeNumber: null,
-                                                roundEdges: true,
-                                          )
-                                      ),
-                                      Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 10.0, top: 10),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Expanded(
                                           flex: 2,
+                                            child: PrettyQr(
+                                              elementColor: Colors.white,
+                                              size: MediaQuery.of(context).size.height * 0.1,
+                                              data: widget.user.bonusCard.numberOfBonusCard.toString(),
+                                              errorCorrectLevel: QrErrorCorrectLevel.M,
+                                              typeNumber: null,
+                                              roundEdges: true,
+                                          )
+                                        ),
+                                        Expanded(
+                                          flex: 5,
                                           child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 15.0),
+                                            padding: const EdgeInsets.only(left: 15.0),
                                             child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 Text(widget.user.fullName),
                                                 Text(widget.user.city),
-                                                Text(widget.user.numberOfNovaPoshta.toString()),
+                                                Text('Нова пошта №${widget.user.numberOfNovaPoshta}'),
                                                 Text(widget.user.phoneNumber),
                                                 Text(widget.user.email),
                                               ],
                                             ),
-                                          ))
-                                    ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
                               ),
                               Expanded(
                                 flex: 2,

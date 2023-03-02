@@ -1,9 +1,9 @@
 import 'package:ly_odesa/data/models/cart.dart';
 
 class MyOrder {
-  final int id, numberOfNovaPoshta;
+  final int id;
   final Cart cart;
-  final String fullName, phoneNumber, city, email, day, time;
+  final String fullName, phoneNumber, city, email, day, time, numberOfNovaPoshta;
 
   MyOrder({required this.id, required this.cart, required this.fullName,
     required this.phoneNumber, required this.city, required this.email,
@@ -17,7 +17,7 @@ class MyOrder {
       phoneNumber: json['phoneNumber'] as String,
       city: json['city'] as String,
       email: json['email'] as String,
-      numberOfNovaPoshta: json['numberOfNovaPoshta'] as int,
+      numberOfNovaPoshta: json['numberOfNovaPoshta'] as String,
       day: json['day'] as String,
       time: json['time'] as String,
   );

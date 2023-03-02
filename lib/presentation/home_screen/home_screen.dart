@@ -5,7 +5,6 @@ import 'package:ly_odesa/presentation/drawer_screen/drawer_screen.dart';
 import 'package:ly_odesa/presentation/home_screen/components/appbar.dart';
 import 'package:ly_odesa/presentation/home_screen/components/header.dart';
 import 'package:ly_odesa/presentation/home_screen/components/home_body.dart';
-import 'dart:math';
 
 import '../../domain/blocs/blocs.dart';
 

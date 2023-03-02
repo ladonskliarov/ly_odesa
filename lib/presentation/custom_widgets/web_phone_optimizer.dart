@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class WebPhoneOptimizer extends StatelessWidget {
-  Widget child;
-  WebPhoneOptimizer({super.key, required this.child});
+  final Widget child;
+  const WebPhoneOptimizer({super.key, required this.child});
 
   @override
   Widget build(BuildContext context){
