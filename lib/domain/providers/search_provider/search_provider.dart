@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:ly_odesa/data/models/post/city_api.dart';
 import 'package:ly_odesa/data/models/post/post_office_api.dart';
+import 'package:ly_odesa/privacy_settings.dart';
 
 class SearchProvider extends ChangeNotifier {
   Set<String> cities = {};
@@ -36,7 +37,7 @@ class SearchProvider extends ChangeNotifier {
     try {
       final result = await http.post(Uri.parse("https://api.novaposhta.ua/v2.0/json/"),
           body: jsonEncode(<String, dynamic>{
-            "apiKey": "aef36c8ed5e48be1832d228c03d041ca",
+            "apiKey": novaPoshtaAPIKey,
             "modelName": "AddressGeneral",
             "calledMethod": "getWarehouses",
             "methodProperties": {
@@ -62,7 +63,7 @@ class SearchProvider extends ChangeNotifier {
     try {
       final result = await http.post(Uri.parse("https://api.novaposhta.ua/v2.0/json/"),
           body: jsonEncode(<String, dynamic>{
-            "apiKey": "aef36c8ed5e48be1832d228c03d041ca",
+            "apiKey": novaPoshtaAPIKey,
             "modelName": "AddressGeneral",
             "calledMethod": "searchSettlements",
             "methodProperties": {
