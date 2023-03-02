@@ -114,7 +114,7 @@ class ValidatorRealization implements Validator {
           return true;
       }
     } else {
-      if(value.length != 7){
+      if(value.length != 10){
         return true;
       }
     }
