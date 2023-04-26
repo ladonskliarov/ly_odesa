@@ -41,7 +41,6 @@ class SearchProvider extends ChangeNotifier {
     postResults.clear();
     choosenPostOffice = 'Відділення Нової пошти';
     fetchPostOffices();
-    notifyListeners();
   }
 
   void choosePostOffice(String value){

@@ -8,6 +8,7 @@ import 'package:ly_odesa/data/repositories/auth_repository/auth_repository.dart'
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ly_odesa/domain/providers/user_data_provider/user_data_provider.dart';
+import 'package:ly_odesa/domain/validator/validator.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -23,7 +24,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<CheckOnDataEvent>((event, emit) async {
       emit(AuthLoadingState());
       final userInAuth = FirebaseAuth.instance.currentUser?.uid;
-
       try {
         if (userInAuth == null) {
           emit(const LoginState());
@@ -32,7 +32,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               .collection('users')
               .doc(userInAuth)
               .get();
-
+              
           final userJsonData = docUserInFirestore.data();
 
           final userData = MyUser.fromJson(userJsonData!);

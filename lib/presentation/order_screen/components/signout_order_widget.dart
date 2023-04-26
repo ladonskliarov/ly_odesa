@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ly_odesa/domain/providers/cart_provider/cart_provider.dart';
-import 'package:ly_odesa/domain/providers/search_provider/search_provider.dart';
 import 'package:ly_odesa/domain/validator/validator.dart';
 import 'package:ly_odesa/presentation/custom_widgets/text_field_widget.dart';
 import 'package:ly_odesa/presentation/home_screen/home_screen.dart';
