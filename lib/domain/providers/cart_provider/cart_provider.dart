@@ -9,21 +9,14 @@ class CartProvider extends ChangeNotifier {
   int get amountBuy => _amountBuy;
   Cart get cart => _cart;
 
-  _addProduct(Product product) {
-    _cart.products.add(Product(
-        id: product.id,
-        price: product.price,
-        amount: _amountBuy,
-        name: product.name,
-        material: product.material,
-        description: product.description,
-        size: product.size,
-        color: product.color,
-        images: product.images,
-        type: product.type
-    ));
-    _cart.cartPrice += _amountBuy * product.price;
-    notifyListeners();
+  _addProduct(Object product) {
+    if (product is Product) {
+      _cart.products.add(product);
+      _cart.cartPrice += _amountBuy * product.price;
+      notifyListeners();
+    } else {
+      throw ArgumentError("Invalid product type");
+    }
   }
 
   clearCart(){

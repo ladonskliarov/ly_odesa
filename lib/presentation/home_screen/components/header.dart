@@ -42,11 +42,11 @@ class _HomeHeaderState extends State<HomeHeader> {
                             height: double.infinity,
                             decoration: BoxDecoration(color: Colors.black.withOpacity(0.3), borderRadius: BorderRadius.circular(20.0)),
                           ),
-                          Center(
+                          const Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              children: const [
+                              children: [
                                 Text('Знайди свій світ посуду,\nу себе вдома!',
                                 style: TextStyle(fontSize: 22, color: Colors.white)
                                 ),

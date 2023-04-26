@@ -19,7 +19,6 @@ class _HomeBodyState extends State<HomeBody> with SingleTickerProviderStateMixin
   void initState() {
     super.initState();
     _tabController = TabController(length: 6, vsync: this);
-
   }
 
   @override

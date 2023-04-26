@@ -8,7 +8,6 @@ import 'package:ly_odesa/data/repositories/auth_repository/auth_repository.dart'
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ly_odesa/domain/providers/user_data_provider/user_data_provider.dart';
-import 'package:ly_odesa/domain/validator/validator.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -19,7 +18,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({required this.authRepository}) : super(AuthLoadingState()) {
     on<ChooseLoginEvent>((event, emit) => emit(const LoginState()));
 
-    on<ChooseRegisterEvent>((event, emit) => emit(RegisterState()));
+    on<ChooseRegisterEvent>((event, emit) => emit(const RegisterState()));
 
     on<CheckOnDataEvent>((event, emit) async {
       emit(AuthLoadingState());
@@ -27,7 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       try {
         if (userInAuth == null) {
-          emit(LoginState());
+          emit(const LoginState());
         } else {
           final docUserInFirestore = await FirebaseFirestore.instance
               .collection('users')
@@ -64,7 +63,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             emit(LoginLoadedState(user: userData));
           });
         } else {
-          emit(LoginState());
+          emit(const LoginState());
         }
       } catch (e) {
         emit(LoginStateError(e as Error));
@@ -98,7 +97,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignoutEvent>((event, emit) {
       authRepository.signOut();
       event.context.read<UserDataProvider>().signOutUser();
-      emit(LoginState());
+      emit(const LoginState());
     });
   }
 }
