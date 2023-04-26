@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ly_odesa/data/models/my_user.dart';
 import 'package:ly_odesa/data/services/firebase_auth_service/firebase_auth_service.dart';
 import 'package:ly_odesa/domain/blocs/auth_bloc/auth_bloc.dart';
+import 'package:ly_odesa/domain/providers/providers.dart';
 import 'package:ly_odesa/domain/providers/user_data_provider/user_data_provider.dart';
 import 'package:ly_odesa/presentation/custom_widgets/web_phone_optimizer.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
@@ -22,6 +23,7 @@ class _UserScreenState extends State<UserScreen> {
   void initState() {
     super.initState();
     context.read<UserDataProvider>().fetchUser();
+    context.read<SearchProvider>().initializeCityAndPost();
   }
 
   @override
@@ -124,6 +126,7 @@ class _UserScreenState extends State<UserScreen> {
                                   onPressed: () {
                                     BlocProvider.of<AuthBloc>(context).add(SignoutEvent(context: context));
                                     context.read<UserDataProvider>().signOutUser();
+                                    context.read<SearchProvider>().clearPostData();
                                   },
                                   child: const Text('Вийти'))
                             ],

@@ -1,5 +1,4 @@
 import 'package:ly_odesa/data/models/product.dart';
-import 'package:ly_odesa/data/models/product/products.dart';
 
 class DrinkingGlasses extends Product {
   final String capacity;

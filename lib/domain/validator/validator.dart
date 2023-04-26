@@ -58,7 +58,6 @@ class ValidatorRealization implements Validator {
       return "Введіть пароль від 8 символів";
     }
 
-    print(value.length);
     return null;
   }
 

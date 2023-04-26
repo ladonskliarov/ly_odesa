@@ -4,6 +4,9 @@ import 'package:ly_odesa/domain/providers/cart_provider/cart_provider.dart';
 import 'package:ly_odesa/domain/validator/validator.dart';
 import 'package:ly_odesa/presentation/custom_widgets/text_field_widget.dart';
 import 'package:ly_odesa/presentation/home_screen/home_screen.dart';
+import 'package:ly_odesa/presentation/post_data_screens/search_city_screen/search_city_screen.dart';
+import 'package:ly_odesa/presentation/post_data_screens/search_post_screen/search_post_screen.dart';
+import 'package:provider/provider.dart';
 
 import '../../../domain/blocs/blocs.dart';
 
@@ -70,22 +73,75 @@ class _SignoutOrderWidgetState extends State<SignoutOrderWidget> {
                 Icons.phone_iphone, color: Colors.white, size: 20,),
                   hintText: 'Телефон'
           ),
-          TextFieldCustom(
-            validator: (value) {
-              return widget._validator.validateCityField(value);
-            },
-              controller: cityController,
-              hintText: 'Місто'),
-          TextFieldCustom(
-            validator: (value) {
-              return widget._validator.validatePostField(value);
-            },
-              controller: numberOfNovaPoshtaController,
-              hintText: 'Відділення'
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        SearchCityScreen(model: Provider.of<SearchProvider>(context))
+                  )
+                );
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: DecoratedBox(
+                  decoration: const BoxDecoration(color: Colors.white),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        context.watch<SearchProvider>().choosenCity, style: const TextStyle(color: Color(0xff1b1a1a), fontSize: 18),
+                        maxLines: 10, overflow: TextOverflow.fade, textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+                const SearchPostScreen()
+                )
+                );
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: DecoratedBox(
+                  decoration: const BoxDecoration(color: Colors.white),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              context.watch<SearchProvider>().choosenPostOffice, style: const TextStyle(color: Color(0xff1b1a1a), fontSize: 18),
+                              maxLines: 10, overflow: TextOverflow.fade, textAlign: TextAlign.center,
+                            ),
+                          ),
+                          const SizedBox(width: 5),
+                          const Icon(Icons.open_with_outlined, color: Colors.red,)
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
           ElevatedButton(
               onPressed: () {
-                if (_formKey.currentState!.validate()) {
+                if (_formKey.currentState!.validate() &&
+                    context.watch<SearchProvider>().choosenPostOffice !=
+                        'Відділення Нової пошти') {
                   BlocProvider.of<OrderBloc>(context).add(
                       SendOrderEvent(
                           fullName: fullNameController.text,

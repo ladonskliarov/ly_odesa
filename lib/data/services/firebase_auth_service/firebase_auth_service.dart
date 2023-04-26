@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:ly_odesa/data/models/bonus_card.dart';
 import 'package:ly_odesa/data/models/my_user.dart';
 import 'package:ly_odesa/data/repositories/auth_repository/auth_repository.dart';
@@ -50,7 +51,7 @@ class FirebaseAuthService implements AuthRepository {
       } else if (error.code == 'email-already-in-use') {
       } else {}
     } catch (error) {
-      print(error.toString());
+      debugPrint(error.toString());
     }
     return userFirebaseAuth;
   }
@@ -80,6 +81,9 @@ class FirebaseAuthService implements AuthRepository {
     try {
       final user = FirebaseAuth.instance.currentUser!;
       await user.sendEmailVerification();
-    } catch (error) {}
+    } catch (error) {
+      debugPrint(error.toString());
+    }
   }
+
 }

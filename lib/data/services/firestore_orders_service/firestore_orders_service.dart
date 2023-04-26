@@ -1,5 +1,5 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:ly_odesa/data/models/cart.dart';
 import 'package:ly_odesa/data/models/order.dart';
 import 'package:ly_odesa/data/models/product.dart';
@@ -9,17 +9,22 @@ import 'package:ly_odesa/data/repositories/orders_repository/orders_repository.d
 class OrderSenderService implements OrderSenderRepository {
   @override
   sendOrder(
-      {required Cart cart, required String fullName,
-      required String phoneNumber, required String email,
-      required String city, required String numberOfNovaPoshta}) async {
+      {required Cart cart,
+      required String fullName,
+      required String phoneNumber,
+      required String email,
+      required String city,
+      required String numberOfNovaPoshta}) async {
     try {
       final ordersCollection = FirebaseFirestore.instance.collection('orders');
-      final sortedCollection = await ordersCollection.orderBy('id', descending: true).get();
+      final sortedCollection =
+          await ordersCollection.orderBy('id', descending: true).get();
 
       int newOrderId = 1;
       if (sortedCollection.docs.isEmpty) {
-      } else {
-        final sortedCollection = await ordersCollection.orderBy('id', descending: true).get();
+        } else {
+        final sortedCollection =
+            await ordersCollection.orderBy('id', descending: true).get();
         final lastOrderJson = sortedCollection.docs.first.data();
         newOrderId = MyOrder.fromJson(lastOrderJson).id + 1;
       }
@@ -32,22 +37,29 @@ class OrderSenderService implements OrderSenderRepository {
           email: email,
           numberOfNovaPoshta: numberOfNovaPoshta,
           phoneNumber: phoneNumber,
-          day:
-              '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}',
+          day: '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}',
           time: '${DateTime.now().hour}:${DateTime.now().minute}');
 
       Map<String, dynamic> orderJson = order.toJson();
-      ordersCollection.doc('$newOrderId').set(orderJson);
-    } catch (e) {}
+      ordersCollection.doc(newOrderId.toString()).set(orderJson);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   @override
-  sendSpeedOrder({required String phoneNumber, required String fullName, required Product product}) async {
-    final ordersCollection = FirebaseFirestore.instance.collection('speedOrders');
-    final sortedCollection = await ordersCollection.orderBy('id', descending: true).get();
+  sendSpeedOrder(
+      {required String phoneNumber,
+      required String fullName,
+      required Product product}) async {
+    final ordersCollection =
+        FirebaseFirestore.instance.collection('speedOrders');
+    final sortedCollection =
+        await ordersCollection.orderBy('id', descending: true).get();
 
     int newOrderId = 1;
-    if (sortedCollection.docs.isEmpty) {} else {
+    if (sortedCollection.docs.isEmpty) {
+    } else {
       final lastOrderJson = sortedCollection.docs.first.data();
       newOrderId = MyOrder.fromJson(lastOrderJson).id + 1;
     }
@@ -57,7 +69,8 @@ class OrderSenderService implements OrderSenderRepository {
         product: product,
         fullName: fullName,
         phoneNumber: phoneNumber,
-        day: '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}',
+        day:
+            '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}',
         time: '${DateTime.now().hour}:${DateTime.now().minute}');
 
     Map<String, dynamic> speedOrderJson = speedOrder.toJson();

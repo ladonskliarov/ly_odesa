@@ -19,23 +19,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({required this.authRepository}) : super(AuthLoadingState()) {
     on<ChooseLoginEvent>((event, emit) => emit(const LoginState()));
 
-    on<ChooseRegisterEvent>((event, emit) => emit(RegisterState()));
+    on<ChooseRegisterEvent>((event, emit) => emit(const RegisterState()));
 
     on<CheckOnDataEvent>((event, emit) async {
       emit(AuthLoadingState());
       final userInAuth = FirebaseAuth.instance.currentUser?.uid;
-      print(userInAuth);
       try {
         if (userInAuth == null) {
-          emit(LoginState());
+          emit(const LoginState());
         } else {
           final docUserInFirestore = await FirebaseFirestore.instance
               .collection('users')
               .doc(userInAuth)
               .get();
-          print(docUserInFirestore.data());
+              
           final userJsonData = docUserInFirestore.data();
-          print(userJsonData);
+
           final userData = MyUser.fromJson(userJsonData!);
           await Future.delayed(const Duration(milliseconds: 200), () {})
               .whenComplete(() {
@@ -64,7 +63,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             emit(LoginLoadedState(user: userData));
           });
         } else {
-          emit(LoginState());
+          emit(const LoginState());
         }
       } catch (e) {
         emit(LoginStateError(e as Error));
@@ -98,7 +97,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignoutEvent>((event, emit) {
       authRepository.signOut();
       event.context.read<UserDataProvider>().signOutUser();
-      emit(LoginState());
+      emit(const LoginState());
     });
   }
 }

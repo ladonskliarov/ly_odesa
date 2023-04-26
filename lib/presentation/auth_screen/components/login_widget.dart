@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ly_odesa/data/services/firebase_auth_service/firebase_auth_service.dart';
 import 'package:ly_odesa/domain/blocs/auth_bloc/auth_bloc.dart';
 import 'package:ly_odesa/domain/validator/validator.dart';
 import 'package:ly_odesa/presentation/custom_widgets/text_field_widget.dart';

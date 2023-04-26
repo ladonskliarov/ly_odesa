@@ -44,7 +44,7 @@ class AuthScreen extends StatelessWidget {
                                         } else if (state is LoginState){
                                           return const LoginWidget();
                                          } else if (state is RegisterState){
-                                          return RegisterWidget();
+                                          return const RegisterWidget();
                                         } else if (state is LoginStateError) {
                                           return Scaffold(
                                             backgroundColor: const Color(0xff1b1a1a),
