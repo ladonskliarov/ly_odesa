@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ly_odesa/domain/providers/cart_provider/cart_provider.dart';
 import 'package:ly_odesa/domain/validator/validator.dart';
 import 'package:ly_odesa/presentation/custom_widgets/text_field_widget.dart';
 import 'package:ly_odesa/presentation/home_screen/home_screen.dart';
@@ -9,6 +8,7 @@ import 'package:ly_odesa/presentation/post_data_screens/search_post_screen/searc
 import 'package:provider/provider.dart';
 
 import '../../../domain/blocs/blocs.dart';
+import '../../../domain/providers/providers.dart';
 
 class SignoutOrderWidget extends StatefulWidget {
   const SignoutOrderWidget({required Validator validator, Key? key}) : _validator = validator, super(key: key);
