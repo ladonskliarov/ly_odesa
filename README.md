@@ -1,5 +1,7 @@
 <h1>LY.Odesa🍽</h1>
-<p>Project that was created for dish business in Odesa, Ukraine.</p>
+<p>Project has been created for an existing dish business in Odesa, Ukraine.</p>
+<p>App avalaible at Firebase web-hosting. For now, you can order product and you will take a feedback for order. You can login into the app and you will not need to fill the order form, it will be filled automatically. App has communication with NovaPoshta API for delivery data for users.</p>
+<p>For next features: Testing, Search&Filtering, Admin Page, Bonus Card, Splash Screen(with shared_preference), AR for avaible products to this idea.</p>
 
 <h1>Stack of technology:</h1>
 
@@ -11,6 +13,8 @@
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
 ![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&logo=Canva&logoColor=white)
+
+<p>Main packages: Firebase(Core, Auth, Cloudstore), Bloc, flutter_bloc, equatable, Provider, http, json_serializible and so on.</p>
 
 <h1>Description</h1>
 <h3>Home Screen</h3>
