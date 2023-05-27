@@ -1,6 +1,6 @@
 <h1>LY.Odesa🍽</h1>
 <p>Project has been created for an existing dish business in Odesa, Ukraine.</p>
-<p>App avalaible at Firebase web-hosting. For now, you can order product and you will take a feedback for order. You can login into the app and you will not need to fill the order form, it will be filled automatically. App has communication with NovaPoshta API for delivery data for users.</p>
+<p>App avalaible at Firebase web-hosting. For now, you can order product and you will take a feedback for order. You can login into the app and you will not need to fill the order form, it will be filled automatically. App has communication with NovaPoshta API for delivery data for users. Verification for forms existing.</p>
 <p>For next features: Testing, Search&Filtering, Admin Page, Bonus Card, Splash Screen(with shared_preference), AR for avaible products to this idea.</p>
 
 <h1>Stack of technology:</h1>
@@ -31,7 +31,12 @@
 
 <h3>Order Screen</h3>
 
+<img src="https://github.com/ladonskliarov/ly_odesa/assets/80324267/79506008-7a3b-4a7c-94c5-5af50c4ee77a" width="360">
+
 <h3>Instagram Screen</h3>
 
 ![instagram_page_MP4_AdobeExpress](https://github.com/ladonskliarov/ly_odesa/assets/80324267/d241f952-d149-4289-8064-69a0c1ad45a9)
 
+<h3>For more apps, you can explore my Github account, or this qr:</h3>
+
+<img src="https://github.com/ladonskliarov/ly_odesa/assets/80324267/2f67dcfe-584e-4930-846d-1afa95fcb4b0" width="150">
