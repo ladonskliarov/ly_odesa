@@ -37,6 +37,6 @@
 
 ![instagram_page_MP4_AdobeExpress](https://github.com/ladonskliarov/ly_odesa/assets/80324267/d241f952-d149-4289-8064-69a0c1ad45a9)
 
-<h3>For more apps, you can explore my Github account, or this qr:</h3>
+<h3>For more apps, you can explore my Github account or this qr:</h3>
 
 <img src="https://github.com/ladonskliarov/ly_odesa/assets/80324267/2f67dcfe-584e-4930-846d-1afa95fcb4b0" width="150">
