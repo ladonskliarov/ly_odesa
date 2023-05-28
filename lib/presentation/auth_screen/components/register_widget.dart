@@ -29,7 +29,15 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   final Validator _validator = ValidatorRealization();
 
   @override
+  void initState() {
+    super.initState();
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final city = Provider.of<SearchProvider>(context, listen: false).choosenCity;
+    final postOffice = Provider.of<SearchProvider>(context, listen: false).choosenPostOffice;
     return SafeArea(
       child: RepositoryProvider(
         create: (context) => SearchDeliveryService(),
@@ -184,7 +192,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                     child: GestureDetector(
                                       onTap: () {
                                         if (_formKey.currentState!.validate() &&
-                                          context.watch<SearchProvider>().choosenPostOffice !=
+                                            Provider.of<SearchProvider>(context, listen: false).choosenPostOffice !=
                                             'Відділення Нової пошти') {
                                               BlocProvider.of<AuthBloc>(context).add(
                                                 RegisterEvent(
@@ -192,8 +200,8 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                                   email: emailController.text,
                                                   password: passwordController.text,
                                                   phoneNumber: phoneNumberController.text,
-                                                  city: cityController.text,
-                                                  numberOfNovaPoshta: numberOfNovaPoshtaController.text,
+                                                  city: city,
+                                                  numberOfNovaPoshta: postOffice
                                               )
                                           );
                                         } else {
@@ -226,7 +234,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               ],
         ),
       ),
-),
+    ),
     );
   }
 }
