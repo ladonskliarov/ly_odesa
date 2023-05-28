@@ -32,7 +32,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               .collection('users')
               .doc(userInAuth)
               .get();
-              
+
           final userJsonData = docUserInFirestore.data();
 
           final userData = MyUser.fromJson(userJsonData!);

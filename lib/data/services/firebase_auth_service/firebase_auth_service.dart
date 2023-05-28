@@ -21,15 +21,18 @@ class FirebaseAuthService implements AuthRepository {
           .createUserWithEmailAndPassword(email: email, password: password);
       userFirebaseAuth = userCredential.user!;
       final usersFirestore = FirebaseFirestore.instance.collection('users');
-      final newUserFirestore = usersFirestore.doc(userFirebaseAuth.uid.toString());
-      final sortedUsersFirestore = await usersFirestore.orderBy('bonusCard', descending: true).get();
+      final newUserFirestore =
+          usersFirestore.doc(userFirebaseAuth.uid.toString());
+      final sortedUsersFirestore =
+          await usersFirestore.orderBy('bonusCard', descending: true).get();
 
       int _bonusCardNumber = 100000001000;
-      if(sortedUsersFirestore.docs.isEmpty){
+      if (sortedUsersFirestore.docs.isEmpty) {
         return;
       } else {
         final lastCreatedUserFirestore = sortedUsersFirestore.docs.first.data();
-        _bonusCardNumber = MyUser.fromJson(lastCreatedUserFirestore).bonusCard.numberOfBonusCard + 1;
+        _bonusCardNumber = MyUser.fromJson(lastCreatedUserFirestore)
+            .bonusCard.numberOfBonusCard + 1;
       }
 
       final firestoreUser = MyUser(
@@ -38,10 +41,8 @@ class FirebaseAuthService implements AuthRepository {
           email: email,
           password: password,
           numberOfNovaPoshta: numberOfNovaPoshta,
-          bonusCard: BonusCard(
-              numberOfBonusCard: _bonusCardNumber,
-              balance: 25
-          ),
+          bonusCard:
+              BonusCard(numberOfBonusCard: _bonusCardNumber, balance: 25),
           phoneNumber: phoneNumber);
 
       final jsonUser = firestoreUser.toJson();
@@ -85,5 +86,4 @@ class FirebaseAuthService implements AuthRepository {
       debugPrint(error.toString());
     }
   }
-
 }
