@@ -53,7 +53,10 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen()), (route) => false);
+                          Navigator.pushAndRemoveUntil(context,
+                              MaterialPageRoute<HomeScreen>(builder: (context) =>
+                              const HomeScreen(),), (route) => false,
+                            );
                           },
                         child: SizedBox(
                           width: 120,
@@ -125,10 +128,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                 padding: const EdgeInsets.only(top: 10.0),
                                 child: GestureDetector(
                                   onTap: () {
-                                    Navigator.of(context).push(MaterialPageRoute(
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute<SearchCityScreen>(
                                         builder: (context) =>
-                                        SearchCityScreen(model: Provider.of<SearchProvider>(context))
-                                    )
+                                        const SearchCityScreen(),
+                                        ),
                                     );
                                   },
                                   child: ClipRRect(
@@ -153,7 +157,9 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                 padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                                 child: GestureDetector(
                                   onTap: () {
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute<SearchPostScreen>(
+                                            builder: (context) =>
                                         const SearchPostScreen()
                                       )
                                     );

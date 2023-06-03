@@ -31,7 +31,11 @@ class CartBottom extends StatelessWidget {
                   ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                     onPressed: () {
                       if(context.read<CartProvider>().cart.cartPrice > 0){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const OrderScreen()));}
+                        Navigator.of(context).push(
+                            MaterialPageRoute<OrderScreen>(builder:
+                                (context) => const OrderScreen(),
+                            ),
+                        );}
                     },
                     child: const Padding(
                       padding: EdgeInsets.all(14.0),

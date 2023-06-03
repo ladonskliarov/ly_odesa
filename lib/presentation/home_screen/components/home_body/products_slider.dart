@@ -23,7 +23,13 @@ class ProductSliderWidget extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.white.withOpacity(0.3),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsScreen(product: productList[index],)));
+                  Navigator.push(context,
+                      MaterialPageRoute<DetailsScreen>(builder:
+                          (context) => DetailsScreen(
+                            product: productList[index],
+                          ),
+                      ),
+                  );
                 },
                 child: SizedBox(
                   height: 150, width: 150,

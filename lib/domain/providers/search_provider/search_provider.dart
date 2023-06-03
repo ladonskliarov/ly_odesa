@@ -48,7 +48,7 @@ class SearchProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  searchPostOffice([String? value = 'Одеса']){
+  void searchPostOffice([String? value = 'Одеса']){
     postResults = posts.where((element) => element.contains(value!)).toList();
     notifyListeners();
   }

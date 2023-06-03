@@ -5,8 +5,8 @@ class BonusCard {
 
   factory BonusCard.fromJson(Map<String, dynamic> json){
     return BonusCard(
-        numberOfBonusCard: json['numberOfBonusCard'],
-        balance: json['balance']
+        numberOfBonusCard: json['numberOfBonusCard'] as int,
+        balance: json['balance'] as int,
     );
   }
 

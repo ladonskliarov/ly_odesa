@@ -77,10 +77,11 @@ class _SignoutOrderWidgetState extends State<SignoutOrderWidget> {
             padding: const EdgeInsets.only(top: 10.0),
             child: GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
+                Navigator.of(context).push(
+                    MaterialPageRoute<SearchCityScreen>(
                     builder: (context) =>
-                        SearchCityScreen(model: Provider.of<SearchProvider>(context))
-                  )
+                        const SearchCityScreen(),
+                  ),
                 );
               },
               child: ClipRRect(
@@ -105,9 +106,10 @@ class _SignoutOrderWidgetState extends State<SignoutOrderWidget> {
             padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
             child: GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-                const SearchPostScreen()
-                )
+                Navigator.of(context).push(
+                    MaterialPageRoute<SearchPostScreen>(
+                        builder: (context) => const SearchPostScreen(),
+                  ),
                 );
               },
               child: ClipRRect(
@@ -152,7 +154,10 @@ class _SignoutOrderWidgetState extends State<SignoutOrderWidget> {
                           cart: context.read<CartProvider>().cart
                       )
                   );
-                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  Navigator.pushAndRemoveUntil(context,
+                      MaterialPageRoute<HomeScreen>(builder:
+                          (context) => const HomeScreen(),
+                      ),
                           (route) => false);
                   context.read<CartProvider>().clearCart();
                 } else {

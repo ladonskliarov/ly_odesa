@@ -7,7 +7,7 @@ class UserDataProvider extends ChangeNotifier {
   MyUser? _user;
   MyUser? get user => _user;
 
-  fetchUser() async {
+  void fetchUser() async {
     final userAuth = FirebaseAuth.instance.currentUser?.uid;
     try {
     if(userAuth == null) {
@@ -22,7 +22,7 @@ class UserDataProvider extends ChangeNotifier {
     } catch (e) {}
   }
 
-  signOutUser() {
+  void signOutUser() {
     if(_user != null){
       _user = null;
       notifyListeners();

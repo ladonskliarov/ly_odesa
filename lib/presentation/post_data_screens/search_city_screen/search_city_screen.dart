@@ -6,9 +6,7 @@ import 'package:provider/provider.dart';
 class SearchCityScreen extends StatelessWidget {
   const SearchCityScreen({
     Key? key,
-    required this.model
   }) : super(key: key);
-  final model;
 
   @override
   Widget build(BuildContext context) {

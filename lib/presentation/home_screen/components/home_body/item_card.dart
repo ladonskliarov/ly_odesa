@@ -13,7 +13,11 @@ class ItemCard extends StatelessWidget {
     return InkWell(
         splashColor: Colors.white.withOpacity(0.3),
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> DetailsScreen(product: product)));
+          Navigator.push(context,
+              MaterialPageRoute<DetailsScreen>(builder:
+                  (context)=> DetailsScreen(product: product),
+              ),
+          );
         },
         child: Column(
             children: <Widget>[

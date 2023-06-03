@@ -56,7 +56,11 @@ class _DrawerPageState extends State<DrawerPage> {
                       children: [
                         ListTile(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const AuthScreen()));
+                            Navigator.push(context,
+                              MaterialPageRoute<AuthScreen>(
+                                builder: (context) => const AuthScreen(),
+                              ),
+                            );
                           },
                           leading: const Icon(Icons.account_circle_rounded, color: Colors.black,),
                           title: const Text('Аккаунт'),

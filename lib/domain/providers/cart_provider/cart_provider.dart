@@ -9,7 +9,7 @@ class CartProvider extends ChangeNotifier {
   int get amountBuy => _amountBuy;
   Cart get cart => _cart;
 
-  _addProduct(Object product) {
+  void _addProduct(Object product) {
     if (product is Product) {
       _cart.products.add(product);
       _cart.cartPrice += _amountBuy * product.price;
@@ -19,13 +19,13 @@ class CartProvider extends ChangeNotifier {
     }
   }
 
-  clearCart(){
+  void clearCart(){
     _cart.products.clear();
     _cart.cartPrice = 0;
     notifyListeners();
   }
 
-  updateProduct(int index) {
+  void updateProduct(int index) {
     _cart.cartPrice =
         _cart.products[index].price * _cart.products[index].amount;
     _cart.products[index].amount += amountBuy;
@@ -34,7 +34,7 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  _checkOnAmount(
+  bool _checkOnAmount(
       {required Product productInCart, required Product newInputProduct}) {
     bool value = true;
     if (productInCart.amount + _amountBuy > newInputProduct.amount) {
@@ -52,7 +52,7 @@ class CartProvider extends ChangeNotifier {
     return value;
   }
 
-  addProductToCart(Product newInputProduct) {
+  void addProductToCart(Product newInputProduct) {
     if (_cart.products.isEmpty) {
       _addProduct(newInputProduct);
     } else {
@@ -79,7 +79,7 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  removeProductFromCart({required Product deletedProduct}) {
+  void removeProductFromCart({required Product deletedProduct}) {
     for (Product product in _cart.products) {
       if (product.id == deletedProduct.id) {
         _cart.cartPrice -= product.amount * product.price;
