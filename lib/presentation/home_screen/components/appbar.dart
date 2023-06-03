@@ -27,7 +27,11 @@ class AppBarWidget extends StatelessWidget {
         ),
         IconButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const CartScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute<CartScreen>(builder:
+                      (context) => const CartScreen(),
+                  ),
+              );
             },
             icon: const Icon(Icons.shopping_cart_outlined, size: 30)
         ),

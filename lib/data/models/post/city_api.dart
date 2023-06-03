@@ -10,7 +10,7 @@ class CityAPI {
   factory CityAPI.fromJson(Map<String, dynamic> json) {
     return CityAPI(
         cities: (json['data'] as List)
-            .map((dynamic e) => City.fromJson(e))
+            .map((dynamic e) => City.fromJson(e as Map<String, dynamic>))
             .toList());
   }
 }

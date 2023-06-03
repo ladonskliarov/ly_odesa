@@ -7,7 +7,10 @@ class City {
 
   factory City.fromJson(Map<String, dynamic> json) {
     return City(
-        cityNames: (json['Addresses'] as List).map((dynamic e) => CityName.fromJson(e)).toList()
+        cityNames: (json['Addresses'] as List).map(
+                (dynamic e) => CityName.fromJson(
+                    e as Map<String, dynamic>),
+        ).toList(),
     );
   }
 }
@@ -21,7 +24,7 @@ class CityName {
 
   factory CityName.fromJson(Map<String, dynamic> json) {
     return CityName(
-        name: json['MainDescription']
+        name: json['MainDescription'] as String?
     );
   }
 }

@@ -20,8 +20,10 @@ class DetailPhotosSlider extends StatelessWidget {
             child: InkWell(
               child: ImagesGallery(image: images[index],),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => OnTapGallery(images: images, index: index, context: context)
+                Navigator.of(context).push(MaterialPageRoute<OnTapGallery>(
+                    builder: (_) => OnTapGallery(
+                        images: images, index: index, context: context,
+                    ),
                 ));
               },
             ),

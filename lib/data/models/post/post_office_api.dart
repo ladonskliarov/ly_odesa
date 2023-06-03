@@ -10,7 +10,7 @@ class PostOfficeAPI {
   factory PostOfficeAPI.fromJson(Map<String, dynamic> json) {
     return PostOfficeAPI(
         postOffices: (json['data'] as List)
-            .map((dynamic e) => PostOffice.fromJson(e))
+            .map((dynamic e) => PostOffice.fromJson(e as Map<String, dynamic>))
             .toList());
   }
 }

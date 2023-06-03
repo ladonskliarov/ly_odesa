@@ -19,5 +19,5 @@ abstract class Product {
       required this.images,
       required this.type});
 
-  toJson(){}
+  void toJson();
 }

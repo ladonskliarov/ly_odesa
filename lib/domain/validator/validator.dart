@@ -103,7 +103,7 @@ class ValidatorRealization implements Validator {
     return false;
   }
 
-  checkNumberOnPrefix(String value){
+  bool checkNumberOnPrefix(String value){
     if(value.startsWith('+38')) {
       if(value.length != 13){
         return true;

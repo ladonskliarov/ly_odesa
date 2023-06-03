@@ -9,8 +9,8 @@ class PostOffice {
 
   factory PostOffice.fromJson(Map<String, dynamic> json) {
     return PostOffice(
-        description: json['Description'],
-        number: json['Number']
+        description: json['Description'] as String?,
+        number: json['Number'] as String?
     );
   }
 }

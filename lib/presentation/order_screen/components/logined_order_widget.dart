@@ -101,9 +101,11 @@ class _LoginedOrderWidgetState extends State<LoginedOrderWidget> {
             padding: const EdgeInsets.only(top: 10.0),
             child: GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => SearchCityScreen(
-                        model: Provider.of<SearchProvider>(context))));
+                Navigator.of(context).push(
+                    MaterialPageRoute<SearchCityScreen>(
+                    builder: (context) => const SearchCityScreen(),
+                    ),
+                );
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(30),
@@ -131,8 +133,10 @@ class _LoginedOrderWidgetState extends State<LoginedOrderWidget> {
             padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
             child: GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const SearchPostScreen()));
+                Navigator.of(context).push(MaterialPageRoute<SearchPostScreen>(
+                    builder: (context) => const SearchPostScreen(),
+                  ),
+                );
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(30),
@@ -181,9 +185,11 @@ class _LoginedOrderWidgetState extends State<LoginedOrderWidget> {
                       numberOfNovaPoshta: context.read<SearchProvider>().choosenPostOffice,
                       cart: context.read<CartProvider>().cart));
                   Navigator.pushAndRemoveUntil(
-                      context, MaterialPageRoute(
-                          builder: (context) => const HomeScreen()),
-                      (route) => false).whenComplete(() => context.read<CartProvider>().clearCart());
+                      context, MaterialPageRoute<HomeScreen>(
+                          builder: (context) => const HomeScreen(),),
+                      (route) => false,).whenComplete(
+                          () => context.read<CartProvider>().clearCart(),
+                  );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(

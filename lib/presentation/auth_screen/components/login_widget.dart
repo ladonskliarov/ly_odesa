@@ -31,7 +31,10 @@ class _LoginWidgetState extends State<LoginWidget> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen()), (route) => false);
+                    Navigator.pushAndRemoveUntil(context,
+                        MaterialPageRoute<HomeScreen>(builder: (context) =>
+                        const HomeScreen(),), (route) => false,
+                      );
                     },
                   child: SizedBox(width: 120, height: 120,
                       child: Image.asset('assets/images/brand/ly_dark.png', fit: BoxFit.fill,)
